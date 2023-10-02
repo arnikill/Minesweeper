@@ -36,6 +36,14 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(mp3|wav)$/i,
+                loader: 'file-loader',
+                options: {
+                    name: 'sounds/[name].[ext]',
+                    mimetype: 'audio/mpeg'
+                },
+            },
+            {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             }
