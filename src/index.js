@@ -125,7 +125,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-
+    function click(cell) {
+        clickCounter++;//увеличивает кол-во кликов
+        clickCount.textContent = `Clicks: ${clickCounter}`;//обновляет
+        clickSound.currentTime = 0;//воспроизводит новый звук щелчка при каждом клике
+        clickSound.play();//воспроизводит звук
+        let currentId = cell.id;//уникальный индификатор
+        if (isGameOver) return;
+        if (cell.classList.contains('checked') || cell.classList.contains('flag')) return;
+        if (cell.classList.contains('bomb')) {
+            gameOver(cell);
+        } else {
+            let total = cell.getAttribute('data');
+            if (total != 0) {//означает, что рядом с текущей клеткой есть бомбы
+                cell.classList.add('checked');
+                if (total == 1) cell.classList.add('one');
+                if (total == 2) cell.classList.add('two');
+                if (total == 3) cell.classList.add('three');
+                if (total == 4) cell.classList.add('four');
+                cell.innerHTML = total;// отображается количество бомб
+                return;// после того, как клетка была отмечена и ей был присвоен  стиль
+            }
+            checkSquare(cell, currentId);
+        }
+        cell.classList.add('checked');
+    }
 
     // Добавляем созданные элементы в body
     document.body.appendChild(container);
