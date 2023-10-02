@@ -98,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (i > 9 && !rightEdge && cells[i + 1 - width].classList.contains('bomb')) total++
                 if (i > 10 && cells[i - width].classList.contains('bomb')) total++
                 if (i > 11 && !leftEdge && cells[i - 1 - width].classList.contains('bomb')) total++
-                if (i < 98 && !leftEdge && cells[i + 1].classList.contains('bomb')) total++
+                if (i < 98 && !rightEdge && cells[i + 1].classList.contains('bomb')) total++
                 if (i < 90 && !leftEdge && cells[i - 1 + width].classList.contains('bomb')) total++
-                if (i < 88 && !leftEdge && cells[i + 1 + width].classList.contains('bomb')) total++
+                if (i < 88 && !rightEdge && cells[i + 1 + width].classList.contains('bomb')) total++
                 if (i < 89 && cells[i + width].classList.contains('bomb')) total++
             }
             cells.setAttribute('data', total)//при клике на клетку игрок может видеть сколько бомб рядом
@@ -108,6 +108,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     createBoard()
 
+    //если нажать на правую кнопку мыши то добавит флаг
+    function addFlag(cell) {
+        flagSound.play()//для звука
+        if (isGameOver) return
+        if (!cell.classList.contains('checked') && flags < bombAmount) {
+            if (!cell.classList.contains('flag')) {
+                cell.classList.add('flag')
+                cell.innerHTML = ' 🚩'
+                flags++
+            } else {
+                cell.classList.remove('flag')
+                cell.innerHTML = ''
+                flags--
+                flagsLeft.innerHTML = bombAmount - flags
+            }
+        }
+    }
 
 
     // Добавляем созданные элементы в body
