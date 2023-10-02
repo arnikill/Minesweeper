@@ -146,10 +146,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.innerHTML = total;// отображается количество бомб
                 return;// после того, как клетка была отмечена и ей был присвоен  стиль
             }
-            checkSquare(cell, currentId);
+            checkCell(cell, currentId);
         }
         cell.classList.add('checked');
     }
+    function checkCell(cell){
+        let leftEdge = i % width === 0//определяет, находится ли текущая клетка на левом краю игравого поля
+        let rightEdge = i % width === width - 1//тут проверяет находится ли на правом
+        setTimeout(()=>{
+            if (currentId > 0 && !leftEdge) {
+                const newId = cells[parseInt(currentId) - 1].id;
+                const newCell = document.getElementById(newId);
+                click(newCell);
+            }
+            if (currentId > 9 && !rightEdge) {
+                const newId = cells[parseInt(currentId) + 1 - width].id;
+                const newCell = document.getElementById(newId);
+                click(newCell);
+            }
+            if (currentId > 10) {
+                const newId = cells[parseInt(currentId - width) ].id;
+                const newCell = document.getElementById(newId);
+                click(newCell);
+            }
+            if (currentId > 11 && !leftEdge) {
+                const newId = cells[parseInt(currentId) - 1 - width].id;
+                const newCell = document.getElementById(newId);
+                click(newCell);
+            }
+            if (currentId < 98 && !rightEdge) {
+                const newId = cells[parseInt(currentId) + 1].id;
+                const newCell = document.getElementById(newId);
+                click(newCell);
+            }
+            if (currentId < 90 && !leftEdge) {
+                const newId = cells[parseInt(currentId)- 1 + width].id;
+                const newCell = document.getElementById(newId);
+                click(newCell);
+            }
+            if (currentId < 88 && !rightEdge) {
+                const newId = cells[parseInt(currentId) + 1 + width].id;
+                const newCell = document.getElementById(newId);
+                click(newCell);
+            }
+            if (currentId <  89) {
+                const newId = cells[parseInt(currentId)  + width].id;
+                const newCell = document.getElementById(newId);
+                click(newCell);
+            }
+        })
+    }
+
 
     // Добавляем созданные элементы в body
     document.body.appendChild(container);
