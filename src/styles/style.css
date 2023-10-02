@@ -1,0 +1,129 @@
+@import "~normalize.css";
+
+body{
+  background-color: #6281c4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+h1 {
+  background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: rainbow 20s ease infinite;
+  animation: rainbow 20s ease infinite;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 25px;
+}
+@-webkit-keyframes rainbow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+.container {
+  width: 500px;
+  margin: 0 auto;
+  align-content: center;
+
+}
+#restartGame {
+  padding: 10px 20px;
+  background-color: #ccc20a; /* Задайте цвет фона кнопки */
+  color: white; /* Задайте цвет текста кнопки */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#restartGame:hover {
+  background-color:  #ede65c; /* Задайте цвет фона кнопки при наведении */
+}
+.time-elapsed {
+  font-size: 16px;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
+/* Стили для отображения количества кликов */
+.click-count {
+  font-size: 16px;
+
+}
+.board {
+  height: 400px;
+  align-items: center;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #dcd6bc;
+  margin-left: 50px;
+  margin-top: 20px;
+  border: 10px solid #dcd6bc;
+  margin-bottom: 10px;
+}
+
+div {
+  font-size: 25px;
+  color: aliceblue;
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.actual {
+  height: 40px;
+  width: 40px;
+  border: 5px solid;
+ border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+  box-sizing: border-box;
+}
+
+.checked {
+  height: 40px;
+  width: 40px;
+  border: 2px solid;
+  background-color: #cecab7;
+  border-color: #9c998d;
+  box-sizing: border-box;
+}
+
+.bomb {
+  height: 40px;
+  width: 40px;
+  border: 5px solid;
+  border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+  box-sizing: border-box;
+}
+
+.one {
+  color: #e76346;
+}
+
+.two {
+  color: #4199d3;
+}
+
+.three {
+  color: #57da59;
+}
+
+.four {
+  color: #bb41d3;
+}
+
+#result {
+  margin-top: 5px;
+  color: #e76346;
+}
