@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     flagsLeft.id = 'flags-left';
     flagsLeft.classList.add('flags-left');
 
-    const result = document.createElement('div');//результат
+    const result = document.createElement('div');
     result.id = 'result';
     result.classList.add('result');
 
@@ -43,6 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
     restartGame.id = 'restartGame';
     restartGame.classList.add('restartGame');
     restartGame.textContent = 'Restart Game';
+
+//параметры игры
+let startTime;
+let elapsedTime = 0;
+let clickCounter = 0;
+let timerInterval;
+let width = 10;
+let bombAmount = 20;
+let flags = 0;
+let cells = [];
+let isGameOver = false;
+
 
 
     // Добавляем созданные элементы в body
@@ -54,3 +66,4 @@ document.addEventListener('DOMContentLoaded', () => {
     container.appendChild(timeElapsed)
     container.appendChild(clickCount)
 });
+
