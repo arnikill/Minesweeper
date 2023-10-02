@@ -117,11 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.classList.add('flag')
                 cell.innerHTML = ' 🚩'
                 flags++
+                checkForWin();
             } else {
                 cell.classList.remove('flag')
                 cell.innerHTML = ''
                 flags--
                 flagsLeft.innerHTML = bombAmount - flags
+
             }
         }
     }
@@ -150,10 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         cell.classList.add('checked');
     }
-    function checkCell(cell){
+    function checkCell(cell) {
         let leftEdge = i % width === 0//определяет, находится ли текущая клетка на левом краю игравого поля
         let rightEdge = i % width === width - 1//тут проверяет находится ли на правом
-        setTimeout(()=>{
+        setTimeout(() => {
             if (currentId > 0 && !leftEdge) {
                 const newId = cells[parseInt(currentId) - 1].id;
                 const newCell = document.getElementById(newId);
@@ -165,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 click(newCell);
             }
             if (currentId > 10) {
-                const newId = cells[parseInt(currentId - width) ].id;
+                const newId = cells[parseInt(currentId - width)].id;
                 const newCell = document.getElementById(newId);
                 click(newCell);
             }
@@ -180,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 click(newCell);
             }
             if (currentId < 90 && !leftEdge) {
-                const newId = cells[parseInt(currentId)- 1 + width].id;
+                const newId = cells[parseInt(currentId) - 1 + width].id;
                 const newCell = document.getElementById(newId);
                 click(newCell);
             }
@@ -189,12 +191,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newCell = document.getElementById(newId);
                 click(newCell);
             }
-            if (currentId <  89) {
-                const newId = cells[parseInt(currentId)  + width].id;
+            if (currentId < 89) {
+                const newId = cells[parseInt(currentId) + width].id;
                 const newCell = document.getElementById(newId);
                 click(newCell);
             }
         })
+    }
+    function gameOver() {
+        if (cell.classList.contains('bomb')) {
+            explosionSound.play();//воспроизведение звука
+            isGameOver = true
+            result.innerHTML = 'GAME OVER!!!'
+
+            cells.forEach((cell) => {
+                if (cell.classList.contains('bomb')) {
+                    cell.innerHTML = '💣';
+                    cell.classList.remove('bomb');
+                    cell.classList.add('checked');
+                }
+            })
+        }
+    }
+    function checkForWin() {
+        winSound.play()//воспроизведение звука
+        let matches = 0
+        for (let i = 0; i < matches.length; i++) {
+            if (cells[i].classList.contains('flag') && cells[i].classList.contains('bomb')) {
+                matches++;
+            }
+            if (matches === bombAmount) {
+                result.innerHTML = 'YOU WIN!';
+                isGameOver = true;
+            }
+        }
     }
 
 
